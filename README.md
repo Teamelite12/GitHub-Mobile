@@ -5,18 +5,13 @@ maven badge (does not show on mobile)
 [Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bumptech.glide/glide/badge.svg)
 [![CI](https://github.com/bigandroidenergies/and1/actions/workflows/test.yml/badge.svg)](https://github.com/bigandroidenergies/and1/actions/workflows/test.yml)
 
-Pug image should show
- 
- ![pug image](./files/test_image_4k.jpg)
+Pug image should show <br>
 
+![Pug](https://github.com/user-attachments/assets/68ffe6de-a56b-482c-b3d9-e72bc59d9c51)
 
- themed pug image does not show
- 
-   <picture>
-    <source media="(prefers-color-scheme: light)" srcset="./files/test_image_4k.jpg">
-    <source media="(prefers-color-scheme: dark)" srcset="./files/crazy_pug.jpg">
-    <img alt="pug" title="pug">
-  </picture>
+themed pug image does not show
+
+ ![Scenery](https://github.com/user-attachments/assets/ffc6d068-7ec1-498a-a143-305a0e740800)
 
 end of test images
 <hr/>
