@@ -113,4 +113,14 @@ sdfsdf
 
 https://github.com/user-attachments/assets/8a260792-0b42-48a7-9f14-9574d63965b3
 
+## Testing
+
+This repository includes a simple test for the Fibonacci function:
+- `test_fibonacci.py` - Tests the Fibonacci sequence generation
+
+To run tests:
+```bash
+python3 test_fibonacci.py
+```
+
 
