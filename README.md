@@ -1,4 +1,4 @@
-a6d8h8jf7211change 945### please keep the following image block unchanged:
+### please keep the following image block unchanged:
 lol
 maven badge (does not show on mobile)
 
@@ -26,7 +26,7 @@ A REPOSITORY TO DUNK ON!
 [link to 2nd anchor](#jumpToMe2)
 
 ![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.bumptech.glide/glide/badge.svg)
-![Build Status](https://travis-ci.org/bumptech/glide.svg?branch=dev)](https://travis-ci.org/bumptech/glide)
+[![Build Status](https://travis-ci.org/bumptech/glide.svg?branch=dev)](https://travis-ci.org/bumptech/glide)
 
 here come lots of empty space
 
