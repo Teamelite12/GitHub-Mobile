@@ -3,5 +3,6 @@ def fibonacci(n):
     for _ in range(n):
         print(a)
         a, b = b, a + b
+        utufyvreyetetedr
 vdrjgbfftdeffe
 fibonacci(20)
