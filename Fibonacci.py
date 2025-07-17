@@ -4,5 +4,4 @@ def fibonacci(n):
         print(a)
         a, b = b, a + b
 vdrjgbfftdeffe
-tryrrevrd
 fibonacci(20)
