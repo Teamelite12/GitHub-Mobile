@@ -1,0 +1,52 @@
+name: Check Image Alt Attributes
+
+on:
+  # Run on a schedule to check all issues periodically
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly on Sunday at midnight UTC
+  
+  # Allow manual triggering
+  workflow_dispatch:
+  
+  # Run when issues or comments are created/edited
+  issues:
+    types: [opened, edited]
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+  check-image-alt-attributes:
+    name: Check Image Alt Attributes in Issues
+    runs-on: ubuntu-latest
+    
+    permissions:
+      issues: read
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+      
+      - name: Run image alt attribute checker
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Checking all images in GitHub issues for proper alt attributes..."
+          python check_image_alt_attributes.py
+        continue-on-error: true
+      
+      - name: Upload results
+        if: always()
+        run: |
+          echo "Image alt attribute check completed."
+          echo "Review the logs above for any issues found."
