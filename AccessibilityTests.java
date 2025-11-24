@@ -12,6 +12,10 @@
 
 public class AccessibilityTests {
     
+    // Placeholder constants for demonstration purposes
+    private static final int TYPICAL_DEVICE_DENSITY_MULTIPLIER = 3; // ~420dpi (xxhdpi)
+    private static final double PLACEHOLDER_GOOD_CONTRAST_RATIO = 7.0; // Exceeds WCAG AA (4.5:1)
+    
     /**
      * Test: Verify all ImageView elements have content descriptions
      * 
@@ -167,12 +171,20 @@ public class AccessibilityTests {
      * 
      * Note: This is a simplified placeholder for demonstration.
      * In a real Android app, use Resources.getSystem().getDisplayMetrics().density
+     * 
+     * Common density multipliers:
+     * - ldpi: 0.75 (~120dpi)
+     * - mdpi: 1.0 (~160dpi) - baseline
+     * - hdpi: 1.5 (~240dpi)
+     * - xhdpi: 2.0 (~320dpi)
+     * - xxhdpi: 3.0 (~480dpi)
+     * - xxxhdpi: 4.0 (~640dpi)
      */
     private int dpToPx(int dp) {
         // TODO: Implement actual dp-to-pixel conversion using Android Resources
         // float density = Resources.getSystem().getDisplayMetrics().density;
         // return Math.round(dp * density);
-        return dp * 3; // Placeholder: assumes ~3x density (typical for modern devices)
+        return dp * TYPICAL_DEVICE_DENSITY_MULTIPLIER;
     }
     
     /**
@@ -182,12 +194,17 @@ public class AccessibilityTests {
      * In a real implementation, calculate using WCAG formula:
      * 1. Convert RGB to relative luminance
      * 2. Apply formula: (L1 + 0.05) / (L2 + 0.05) where L1 > L2
+     * 
+     * WCAG AA requirements:
+     * - Normal text: 4.5:1 minimum
+     * - Large text (18pt+ or 14pt+ bold): 3.0:1 minimum
+     * - UI components: 3.0:1 minimum
      */
     private double calculateContrastRatio(int color1, int color2) {
         // TODO: Implement actual WCAG contrast ratio calculation
         // 1. Convert colors to relative luminance
         // 2. Calculate ratio using: (lighter + 0.05) / (darker + 0.05)
-        return 7.0; // Placeholder: assumes good contrast (> 4.5:1 required)
+        return PLACEHOLDER_GOOD_CONTRAST_RATIO;
     }
     
     /**
