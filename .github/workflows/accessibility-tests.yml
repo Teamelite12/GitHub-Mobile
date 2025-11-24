@@ -9,6 +9,10 @@ on:
 jobs:
   accessibility-tests:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      pull-requests: write
     
     steps:
     - name: Checkout code
