@@ -24,15 +24,22 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Run Accessibility Linter
+      - name: Compile Accessibility Tests
+        run: |
+          echo "Compiling accessibility tests..."
+          javac AccessibilityTests.java
+          echo "Compilation completed successfully"
+
+      - name: Run Accessibility Tests
         run: |
           echo "Running accessibility checks..."
-          # This is a placeholder for actual accessibility testing tools
-          # For Android apps, you would typically use:
-          # - Google Accessibility Scanner
-          # - Espresso with accessibility checks
-          # - axe DevTools
-          echo "Accessibility scan completed successfully"
+          java AccessibilityTests
+          echo ""
+          echo "Note: In a production Android app, you would integrate:"
+          echo "  - Google Accessibility Scanner"
+          echo "  - Espresso with accessibility checks"
+          echo "  - axe DevTools for Mobile"
+          echo "  - Android Accessibility Test Framework"
 
       - name: Generate Accessibility Report
         run: |
