@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/username_hint"
         android:inputType="text"
+        android:autofillHints="username"
         android:minHeight="48dp"
         android:importantForAccessibility="yes"
         android:contentDescription="@string/username_desc"

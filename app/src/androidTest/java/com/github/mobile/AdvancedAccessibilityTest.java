@@ -131,21 +131,11 @@ public class AdvancedAccessibilityTest {
             View loginButton = activity.findViewById(R.id.login_button);
             View usernameInput = activity.findViewById(R.id.username_input);
 
-            // Measure views
-            loginButton.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-            );
-            usernameInput.measure(
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
-            );
-
             // Convert 48dp to pixels
             float density = activity.getResources().getDisplayMetrics().density;
             int minTouchTarget = (int) (48 * density);
 
-            // Verify minimum dimensions
+            // Verify minimum dimensions are set
             assertTrue("Login button height should be at least 48dp",
                     loginButton.getMinimumHeight() >= minTouchTarget);
             assertTrue("Username input height should be at least 48dp",

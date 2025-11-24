@@ -42,11 +42,13 @@ public class AccessibilityTest {
      */
     @BeforeClass
     public static void enableAccessibilityChecks() {
+        // Enable accessibility checks for all tests
+        // Suppressing SpeakableTextPresentCheck because our text views have both
+        // text content and contentDescription, which can cause redundant announcements
         AccessibilityChecks.enable()
                 .setRunChecksFromRootView(true)
                 .setSuppressingResultMatcher(
                         Matchers.anyOf(
-                                // Suppress specific checks if needed
                                 AccessibilityCheckResultUtils.matchesCheck(
                                         SpeakableTextPresentCheck.class)
                         )

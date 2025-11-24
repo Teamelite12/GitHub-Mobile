@@ -31,6 +31,7 @@ android {
     lint {
         enable 'ContentDescription', 'TouchTargetSizeCheck', 'TextContrastCheck'
         enable 'ClickableViewAccessibility', 'LabelFor', 'Accessibility'
+        enable 'SpUsage', 'HardcodedText'
         abortOnError true
         checkReleaseBuilds true
         htmlReport true
