@@ -42,6 +42,12 @@ app/
 └── build.gradle
 ```
 
+## Prerequisites
+
+- Android SDK (API level 21 or higher)
+- JDK 17 or higher
+- Gradle 8.2 or higher
+
 ## Running Tests
 
 ### Unit Tests
@@ -50,6 +56,7 @@ app/
 ```
 
 ### Instrumented Accessibility Tests
+Note: Requires a connected Android device or emulator
 ```bash
 ./gradlew connectedAndroidTest
 ```
@@ -57,6 +64,11 @@ app/
 ### Lint Checks
 ```bash
 ./gradlew lint
+```
+
+### Build the Project
+```bash
+./gradlew build
 ```
 
 ## Accessibility Guidelines Followed
