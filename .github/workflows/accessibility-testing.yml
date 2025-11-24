@@ -31,30 +31,55 @@ jobs:
           echo "Compilation completed successfully"
 
       - name: Run Accessibility Tests
+        id: run-tests
         run: |
           echo "Running accessibility checks..."
-          java AccessibilityTests
+          java AccessibilityTests > test-output.log 2>&1
+          TEST_EXIT_CODE=$?
+          cat test-output.log
           echo ""
           echo "Note: In a production Android app, you would integrate:"
           echo "  - Google Accessibility Scanner"
           echo "  - Espresso with accessibility checks"
           echo "  - axe DevTools for Mobile"
           echo "  - Android Accessibility Test Framework"
+          exit $TEST_EXIT_CODE
 
       - name: Generate Accessibility Report
+        if: always()
         run: |
           mkdir -p accessibility-reports
+          
+          # Determine test status
+          if [ -f test-output.log ]; then
+            if grep -q "All accessibility tests completed successfully" test-output.log; then
+              TEST_STATUS="PASSED"
+            else
+              TEST_STATUS="FAILED"
+            fi
+          else
+            TEST_STATUS="UNKNOWN"
+          fi
+          
+          # Generate report
           echo "# Accessibility Test Report" > accessibility-reports/report.md
           echo "" >> accessibility-reports/report.md
           echo "## Test Summary" >> accessibility-reports/report.md
           echo "- Date: $(date)" >> accessibility-reports/report.md
-          echo "- Status: PASSED" >> accessibility-reports/report.md
+          echo "- Status: $TEST_STATUS" >> accessibility-reports/report.md
           echo "" >> accessibility-reports/report.md
           echo "## Checks Performed" >> accessibility-reports/report.md
           echo "- Screen reader compatibility" >> accessibility-reports/report.md
           echo "- Color contrast validation" >> accessibility-reports/report.md
           echo "- Touch target size verification" >> accessibility-reports/report.md
           echo "- Content description validation" >> accessibility-reports/report.md
+          echo "" >> accessibility-reports/report.md
+          echo "## Test Output" >> accessibility-reports/report.md
+          echo "\`\`\`" >> accessibility-reports/report.md
+          if [ -f test-output.log ]; then
+            cat test-output.log >> accessibility-reports/report.md
+          fi
+          echo "\`\`\`" >> accessibility-reports/report.md
 
       - name: Upload Accessibility Report
         uses: actions/upload-artifact@v4
