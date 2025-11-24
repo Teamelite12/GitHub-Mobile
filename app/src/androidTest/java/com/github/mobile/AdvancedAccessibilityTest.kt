@@ -53,19 +53,17 @@ class AdvancedAccessibilityTest {
     @Test
     fun testLabelConsistency() {
         // Verify consistent labeling across the app
-        val expectedLabels = mapOf(
-            R.id.searchInput to Pair("hint", "Enter repository name"),
-            R.id.searchButton to Pair("text", "Search"),
-            R.id.titleText to Pair("text", "GitHub Repository Search")
-        )
         
-        expectedLabels.forEach { (viewId, labelPair) ->
-            val (type, value) = labelPair
-            when (type) {
-                "hint" -> onView(withId(viewId)).check(matches(withHint(value)))
-                "text" -> onView(withId(viewId)).check(matches(withText(value)))
-            }
-        }
+        // Check hints
+        onView(withId(R.id.searchInput))
+            .check(matches(withHint("Enter repository name")))
+        
+        // Check text labels
+        onView(withId(R.id.searchButton))
+            .check(matches(withText("Search")))
+        
+        onView(withId(R.id.titleText))
+            .check(matches(withText("GitHub Repository Search")))
     }
 
     @Test
