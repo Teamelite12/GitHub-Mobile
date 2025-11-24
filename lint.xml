@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Accessibility lint checks -->
+    
+    <!-- Error on missing content descriptions for images and buttons -->
+    <issue id="ContentDescription" severity="error" />
+    
+    <!-- Error on small touch targets -->
+    <issue id="TouchTargetSizeCheck" severity="error" />
+    
+    <!-- Warning on low text contrast -->
+    <issue id="TextContrastCheck" severity="warning" />
+    
+    <!-- Error on clickable views without content descriptions -->
+    <issue id="ClickableViewAccessibility" severity="error" />
+    
+    <!-- Warning for missing labels on form fields -->
+    <issue id="LabelFor" severity="warning" />
+    
+    <!-- Error for text size not using sp units -->
+    <issue id="SpUsage" severity="error" />
+    
+    <!-- Warning for hard-coded text (should use strings.xml for accessibility) -->
+    <issue id="HardcodedText" severity="warning" />
+    
+    <!-- Enable accessibility checks -->
+    <issue id="Accessibility" severity="error" />
+</lint>

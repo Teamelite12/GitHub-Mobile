@@ -27,6 +27,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    lint {
+        enable 'ContentDescription', 'TouchTargetSizeCheck', 'TextContrastCheck'
+        enable 'ClickableViewAccessibility', 'LabelFor', 'Accessibility'
+        abortOnError true
+        checkReleaseBuilds true
+        htmlReport true
+        xmlReport true
+    }
 }
 
 dependencies {
