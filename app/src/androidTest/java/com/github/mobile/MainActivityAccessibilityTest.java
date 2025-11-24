@@ -29,10 +29,10 @@ public class MainActivityAccessibilityTest {
     public static void enableAccessibilityChecks() {
         // Enable accessibility checks with all default checks
         AccessibilityChecks.enable()
-            // Suppress checks that may not be relevant for this simple demo
+            // Suppress TextContrastCheck for this demo as we're using system default themes
+            // In production, you should validate actual color contrast ratios
             .setSuppressingResultMatcher(
                 Matchers.anyOf(
-                    // Example: Suppress specific check types if needed
                     AccessibilityCheckResultUtils.matchesCheckNames(
                         Matchers.is("TextContrastCheck")
                     )

@@ -40,7 +40,7 @@ jobs:
     - name: Run accessibility tests
       uses: reactivecircus/android-emulator-runner@v2
       with:
-        api-level: 29
+        api-level: 33
         arch: x86_64
         profile: Nexus 6
         script: ./gradlew connectedAndroidTest
