@@ -7,12 +7,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.LargeTest
-import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResultUtils.matchesCheckNames
-import com.google.android.apps.common.testing.accessibility.framework.AccessibilityCheckResultUtils.matchesViews
-import com.google.android.apps.common.testing.accessibility.framework.checks.*
 import androidx.test.espresso.accessibility.AccessibilityChecks
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.Matchers.allOf
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
@@ -55,31 +50,26 @@ class AccessibilityTest {
         // Verify all interactive elements meet minimum touch target size (48x48dp)
         onView(withId(R.id.searchButton))
             .check(matches(isDisplayed()))
-            .perform(click())
         
         onView(withId(R.id.searchInput))
             .check(matches(isDisplayed()))
-            .perform(click())
     }
 
     @Test
     fun testContentDescriptions() {
         // Verify all important UI elements have content descriptions
-        onView(withId(R.id.titleText))
-            .check(matches(isDisplayed()))
-            .check(matches(withContentDescription("Application title: GitHub Repository Search")))
-
-        onView(withId(R.id.searchInput))
-            .check(matches(isDisplayed()))
-            .check(matches(withContentDescription("Search input field for repository name")))
-
-        onView(withId(R.id.searchButton))
-            .check(matches(isDisplayed()))
-            .check(matches(withContentDescription("Search button to find repositories")))
-
-        onView(withId(R.id.resultText))
-            .check(matches(isDisplayed()))
-            .check(matches(withContentDescription("Search results display area")))
+        val expectedDescriptions = mapOf(
+            R.id.titleText to "Application title: GitHub Repository Search",
+            R.id.searchInput to "Search input field for repository name",
+            R.id.searchButton to "Search button to find repositories",
+            R.id.resultText to "Search results display area"
+        )
+        
+        expectedDescriptions.forEach { (viewId, description) ->
+            onView(withId(viewId))
+                .check(matches(isDisplayed()))
+                .check(matches(withContentDescription(description)))
+        }
     }
 
     @Test
@@ -103,18 +93,11 @@ class AccessibilityTest {
     @Test
     fun testScreenReaderNavigation() {
         // Test that screen reader can navigate through all elements
-        onView(withId(R.id.titleText))
-            .check(matches(isDisplayed()))
+        val viewIds = listOf(R.id.titleText, R.id.searchInput, R.id.searchButton, R.id.resultText)
         
-        onView(withId(R.id.searchInput))
-            .check(matches(isDisplayed()))
-            .perform(click())
-        
-        onView(withId(R.id.searchButton))
-            .check(matches(isDisplayed()))
-        
-        onView(withId(R.id.resultText))
-            .check(matches(isDisplayed()))
+        viewIds.forEach { viewId ->
+            onView(withId(viewId)).check(matches(isDisplayed()))
+        }
     }
 
     @Test

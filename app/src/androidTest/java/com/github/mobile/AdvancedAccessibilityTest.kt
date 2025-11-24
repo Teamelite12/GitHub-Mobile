@@ -33,38 +33,39 @@ class AdvancedAccessibilityTest {
     @Test
     fun testMinimumTouchTargetSize() {
         // Verify all clickable elements meet the minimum 48dp x 48dp requirement
-        onView(withId(R.id.searchButton))
-            .check(matches(isDisplayed()))
-            .check(matches(hasMinimumSize(48, 48)))
-
-        onView(withId(R.id.searchInput))
-            .check(matches(isDisplayed()))
-            .check(matches(hasMinimumSize(48, 48)))
+        listOf(R.id.searchButton, R.id.searchInput).forEach { viewId ->
+            onView(withId(viewId))
+                .check(matches(isDisplayed()))
+                .check(matches(hasMinimumSize(48, 48)))
+        }
     }
 
     @Test
     fun testImportantForAccessibility() {
         // Verify important elements are marked for accessibility
-        onView(withId(R.id.searchInput))
-            .check(matches(isDisplayed()))
-            .check(matches(isImportantForAccessibility()))
-
-        onView(withId(R.id.resultText))
-            .check(matches(isDisplayed()))
-            .check(matches(isImportantForAccessibility()))
+        listOf(R.id.searchInput, R.id.resultText).forEach { viewId ->
+            onView(withId(viewId))
+                .check(matches(isDisplayed()))
+                .check(matches(isImportantForAccessibility()))
+        }
     }
 
     @Test
     fun testLabelConsistency() {
         // Verify consistent labeling across the app
-        onView(withId(R.id.searchInput))
-            .check(matches(withHint("Enter repository name")))
-
-        onView(withId(R.id.searchButton))
-            .check(matches(withText("Search")))
-
-        onView(withId(R.id.titleText))
-            .check(matches(withText("GitHub Repository Search")))
+        val expectedLabels = mapOf(
+            R.id.searchInput to Pair("hint", "Enter repository name"),
+            R.id.searchButton to Pair("text", "Search"),
+            R.id.titleText to Pair("text", "GitHub Repository Search")
+        )
+        
+        expectedLabels.forEach { (viewId, labelPair) ->
+            val (type, value) = labelPair
+            when (type) {
+                "hint" -> onView(withId(viewId)).check(matches(withHint(value)))
+                "text" -> onView(withId(viewId)).check(matches(withText(value)))
+            }
+        }
     }
 
     @Test
