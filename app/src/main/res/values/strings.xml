@@ -7,4 +7,7 @@
     <string name="search_field_description">Search for repositories</string>
     <string name="search_button_description">Execute search</string>
     <string name="result_description">Search results</string>
+    <string name="result_description_initial">Search results will appear here</string>
+    <string name="result_description_query">Search results for %1$s</string>
+    <string name="searching_for">Searching for: %1$s</string>
 </resources>
