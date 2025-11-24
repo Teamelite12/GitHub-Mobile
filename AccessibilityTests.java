@@ -164,20 +164,30 @@ public class AccessibilityTests {
     
     /**
      * Helper method to convert dp to pixels
+     * 
+     * Note: This is a simplified placeholder for demonstration.
+     * In a real Android app, use Resources.getSystem().getDisplayMetrics().density
      */
     private int dpToPx(int dp) {
+        // TODO: Implement actual dp-to-pixel conversion using Android Resources
         // float density = Resources.getSystem().getDisplayMetrics().density;
         // return Math.round(dp * density);
-        return dp * 3; // Simplified for example
+        return dp * 3; // Placeholder: assumes ~3x density (typical for modern devices)
     }
     
     /**
      * Helper method to calculate contrast ratio between two colors
+     * 
+     * Note: This is a placeholder for demonstration.
+     * In a real implementation, calculate using WCAG formula:
+     * 1. Convert RGB to relative luminance
+     * 2. Apply formula: (L1 + 0.05) / (L2 + 0.05) where L1 > L2
      */
     private double calculateContrastRatio(int color1, int color2) {
-        // Implementation would calculate actual contrast ratio
-        // using relative luminance formula
-        return 7.0; // Placeholder - actual implementation needed
+        // TODO: Implement actual WCAG contrast ratio calculation
+        // 1. Convert colors to relative luminance
+        // 2. Calculate ratio using: (lighter + 0.05) / (darker + 0.05)
+        return 7.0; // Placeholder: assumes good contrast (> 4.5:1 required)
     }
     
     /**
