@@ -10,6 +10,8 @@ jobs:
   accessibility-tests:
     name: Run Accessibility Tests
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
     - name: Checkout code
@@ -79,6 +81,8 @@ jobs:
   lint-accessibility:
     name: Lint for Accessibility Issues
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     
     steps:
     - name: Checkout code
