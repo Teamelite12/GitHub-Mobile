@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GitHub Repository Search"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:contentDescription="Application title: GitHub Repository Search"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/searchInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter repository name"
+        android:contentDescription="Search input field for repository name"
+        android:importantForAccessibility="yes"
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:contentDescription="Search button to find repositories"
+        android:minHeight="48dp"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Results will appear here"
+        android:textSize="16sp"
+        android:contentDescription="Search results display area"
+        android:importantForAccessibility="yes" />
+
+</LinearLayout>
