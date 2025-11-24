@@ -1,0 +1,30 @@
+# Accessibility Testing
+accessibility-reports/
+*.log
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Build outputs
+build/
+target/
+out/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*~
