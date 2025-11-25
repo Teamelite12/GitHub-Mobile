@@ -1,0 +1,17 @@
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Build output
+target/
+build/
+out/
