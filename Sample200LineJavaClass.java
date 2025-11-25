@@ -1,26 +1,36 @@
 package com.example.sample;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Sample200LineJavaClass {
 
-    private Map<Integer, String> dataMap;
-    private List<String> dataList;
-    private Set<String> dataSet;
-    private int counter;
+    private final Map<Integer, String> dataMap;
+    private final List<String> dataList;
+    private final Set<String> dataSet;
+    private int nextId;
 
     public Sample200LineJavaClass() {
-        dataMap = new HashMap<>();
-        dataList = new ArrayList<>();
-        dataSet = new HashSet<>();
-        counter = 0;
+        this.dataMap = new HashMap<>();
+        this.dataList = new ArrayList<>();
+        this.dataSet = new HashSet<>();
+        this.nextId = 0;
+    }
+
+    public int addData(String data) {
+        int id = nextId++;
+        dataMap.put(id, data);
+        dataList.add(data);
+        dataSet.add(data);
+        return id;
     }
 
     public void addData(int id, String data) {
         dataMap.put(id, data);
         dataList.add(data);
         dataSet.add(data);
-        counter++;
+        nextId = Math.max(nextId, id + 1);
     }
 
     public String getDataById(int id) {
@@ -32,7 +42,7 @@ public class Sample200LineJavaClass {
     }
 
     public int getDataCount() {
-        return counter;
+        return dataList.size();
     }
 
     public boolean removeData(int id) {
@@ -40,16 +50,13 @@ public class Sample200LineJavaClass {
         if (data != null) {
             dataList.remove(data);
             dataSet.remove(data);
-            counter--;
             return true;
         }
         return false;
     }
 
     public void printAllData() {
-        for (String data : dataList) {
-            System.out.println(data);
-        }
+        dataList.forEach(System.out::println);
     }
 
     public boolean containsData(String data) {
@@ -60,7 +67,7 @@ public class Sample200LineJavaClass {
         dataMap.clear();
         dataList.clear();
         dataSet.clear();
-        counter = 0;
+        nextId = 0;
     }
 
     public void populateSampleData(int n) {
@@ -73,38 +80,30 @@ public class Sample200LineJavaClass {
         System.out.println("Total Data: " + getDataCount());
     }
 
+    public List<String> filterData(Predicate<String> predicate) {
+        return dataList.stream()
+                .filter(predicate)
+                .collect(Collectors.toList());
+    }
+
+    public void printFilteredData(Predicate<String> predicate) {
+        filterData(predicate).forEach(System.out::println);
+    }
+
     public void printDataByPrefix(String prefix) {
-        for (String data : dataList) {
-            if (data.startsWith(prefix)) {
-                System.out.println(data);
-            }
-        }
+        printFilteredData(data -> data.startsWith(prefix));
     }
 
     public void printDataBySuffix(String suffix) {
-        for (String data : dataList) {
-            if (data.endsWith(suffix)) {
-                System.out.println(data);
-            }
-        }
+        printFilteredData(data -> data.endsWith(suffix));
     }
 
     public void printDataContaining(String substring) {
-        for (String data : dataList) {
-            if (data.contains(substring)) {
-                System.out.println(data);
-            }
-        }
+        printFilteredData(data -> data.contains(substring));
     }
 
     public List<String> getDataByPredicate(Predicate<String> predicate) {
-        List<String> result = new ArrayList<>();
-        for (String data : dataList) {
-            if (predicate.test(data)) {
-                result.add(data);
-            }
-        }
-        return result;
+        return filterData(predicate);
     }
 
     public void sortData() {
@@ -120,30 +119,26 @@ public class Sample200LineJavaClass {
     }
 
     public void printFirstN(int n) {
-        for (int i = 0; i < Math.min(n, dataList.size()); i++) {
-            System.out.println(dataList.get(i));
-        }
+        dataList.stream().limit(n).forEach(System.out::println);
     }
 
     public void printLastN(int n) {
-        for (int i = Math.max(0, dataList.size() - n); i < dataList.size(); i++) {
-            System.out.println(dataList.get(i));
-        }
+        dataList.stream()
+                .skip(Math.max(0, dataList.size() - n))
+                .forEach(System.out::println);
     }
 
     public void duplicateData(int id, int times) {
         String data = dataMap.get(id);
         if (data != null) {
             for (int i = 0; i < times; i++) {
-                addData(counter, data + "_copy" + i);
+                addData(data + "_copy" + i);
             }
         }
     }
 
     public void printUniqueData() {
-        for (String data : dataSet) {
-            System.out.println(data);
-        }
+        dataSet.forEach(System.out::println);
     }
 
     public static void main(String[] args) {
@@ -180,27 +175,16 @@ public class Sample200LineJavaClass {
         sample.clearAll();
         sample.printStats();
 
-        // More dummy operations to reach 200 lines
+        // Populate more sample data
         for (int i = 0; i < 30; i++) {
             sample.addData(i + 200, "MoreData" + i);
         }
         sample.printAllData();
 
         System.out.println("Predicate example:");
-        List<String> filtered = sample.getDataByPredicate(s -> s.endsWith("9"));
-        for (String d : filtered) {
-            System.out.println(d);
-        }
+        sample.getDataByPredicate(s -> s.endsWith("9")).forEach(System.out::println);
 
-        // Print unique data
         sample.printUniqueData();
-
-        // Final stats
         sample.printStats();
     }
-}
-
-// Helper functional interface for Java 7 compatibility
-interface Predicate<T> {
-    boolean test(T t);
 }
