@@ -1,16 +1,7 @@
 /**
  * Test3 - Test suite for Main class functionality.
- * 
- * Changes made:
- * - Renamed from Test2 to Test3 per user request
- * - Made test methods private for encapsulation
- * - Added test counter with summary output (passedTests/totalTests)
- * - Used printf for formatted output instead of println
- * - Added exit code (1) for test failures
- * - Replaced AssertionError with conditional checks and formatted messages
  */
 public class Test3 {
-    // Test tracking counters
     private static int passedTests = 0;
     private static int totalTests = 0;
 
@@ -21,14 +12,11 @@ public class Test3 {
     public static void main(String[] args) {
         System.out.println("Running Test3...\n");
 
-        // Execute all test methods
         testAdd();
         testGreet();
 
-        // Display test summary
         System.out.printf("%nResults: %d/%d tests passed%n", passedTests, totalTests);
         
-        // Exit with error code if any tests failed
         if (passedTests != totalTests) {
             System.exit(1);
         }

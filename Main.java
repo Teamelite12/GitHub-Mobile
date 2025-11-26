@@ -1,13 +1,7 @@
 /**
  * Main class for GitHub Mobile application.
- * 
- * Changes made:
- * - Renamed from 'main' to 'Main' (Java naming convention)
- * - Added constants for greeting strings (GREETING_PREFIX, GREETING_SUFFIX)
- * - Used simple string concatenation for compiler optimization
  */
 public class Main {
-    // Constants for greeting message construction
     private static final String GREETING_PREFIX = "Hello, ";
     private static final String GREETING_SUFFIX = "!";
 
