@@ -7,17 +7,7 @@ public class main {
         System.out.println("Version: " + VERSION);
         System.out.println();
         
-        displayFeatures();
         displaySystemInfo();
-    }
-
-    private static void displayFeatures() {
-        System.out.println("Available Features:");
-        System.out.println("  - Browse repositories");
-        System.out.println("  - View pull requests");
-        System.out.println("  - Manage issues");
-        System.out.println("  - Review code changes");
-        System.out.println();
     }
 
     private static void displaySystemInfo() {
