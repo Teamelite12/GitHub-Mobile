@@ -1,9 +1,9 @@
-public class Test2 {
+public class Test3 {
     private static int passedTests = 0;
     private static int totalTests = 0;
 
     public static void main(String[] args) {
-        System.out.println("Running Test2...\n");
+        System.out.println("Running Test3...\n");
 
         testAdd();
         testGreet();
