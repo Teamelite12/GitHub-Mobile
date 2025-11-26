@@ -1,4 +1,7 @@
-public class main {
+public class Main {
+    private static final String GREETING_PREFIX = "Hello, ";
+    private static final String GREETING_SUFFIX = "!";
+
     public static void main(String[] args) {
         System.out.println("Hello from GitHub Mobile!");
     }
@@ -8,6 +11,6 @@ public class main {
     }
 
     public static String greet(String name) {
-        return "Hello, " + name + "!";
+        return GREETING_PREFIX + name + GREETING_SUFFIX;
     }
 }
