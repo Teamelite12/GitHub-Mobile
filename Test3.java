@@ -1,5 +1,14 @@
 /**
  * Test3 - Test suite for Main class functionality.
+ * 
+ * <h2>Changes:</h2>
+ * <ul>
+ *   <li>Renamed from Test2 to Test3</li>
+ *   <li>Made test methods public for external test runner compatibility</li>
+ *   <li>Added test counter with summary output (passedTests/totalTests)</li>
+ *   <li>Used printf for formatted output</li>
+ *   <li>Added exit code (1) for test failures</li>
+ * </ul>
  */
 public class Test3 {
     private static int passedTests = 0;

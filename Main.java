@@ -1,5 +1,12 @@
 /**
  * Main class for GitHub Mobile application.
+ * 
+ * <h2>Changes:</h2>
+ * <ul>
+ *   <li>Renamed class from 'main' to 'Main' (Java naming convention)</li>
+ *   <li>Added constants for greeting strings (GREETING_PREFIX, GREETING_SUFFIX)</li>
+ *   <li>Added null validation to greet() method</li>
+ * </ul>
  */
 public class Main {
     private static final String GREETING_PREFIX = "Hello, ";
