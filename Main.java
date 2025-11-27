@@ -25,10 +25,13 @@ public class Main {
 
     /**
      * Creates a greeting message for the given name.
-     * @param name the name to greet
+     * @param name the name to greet (null returns "Hello!")
      * @return formatted greeting string
      */
     public static String greet(String name) {
+        if (name == null) {
+            return GREETING_PREFIX.trim() + GREETING_SUFFIX;
+        }
         return GREETING_PREFIX + name + GREETING_SUFFIX;
     }
 }

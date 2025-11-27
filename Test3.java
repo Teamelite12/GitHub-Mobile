@@ -26,7 +26,7 @@ public class Test3 {
      * Tests the Main.add() method.
      * Verifies that 2 + 3 = 5.
      */
-    private static void testAdd() {
+    public static void testAdd() {
         totalTests++;
         final int a = 2, b = 3, expected = 5;
         int result = Main.add(a, b);
@@ -43,7 +43,7 @@ public class Test3 {
      * Tests the Main.greet() method.
      * Verifies that greet("World") returns "Hello, World!".
      */
-    private static void testGreet() {
+    public static void testGreet() {
         totalTests++;
         final String name = "World";
         final String expected = "Hello, World!";
