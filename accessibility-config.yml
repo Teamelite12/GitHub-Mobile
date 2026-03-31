@@ -1,0 +1,53 @@
+# Accessibility Testing Configuration
+
+# This file defines the accessibility testing rules and thresholds
+# for the GitHub Mobile application
+
+# Color Contrast Ratios (WCAG AA Compliance)
+min_contrast_normal_text: 4.5
+min_contrast_large_text: 3.0
+min_contrast_ui_components: 3.0
+
+# Touch Target Sizes (in density-independent pixels)
+min_touch_target_width: 48
+min_touch_target_height: 48
+
+# Text Sizing
+min_font_size: 12
+max_zoom_level: 200
+
+# Screen Reader Requirements
+require_content_descriptions: true
+require_heading_structure: true
+require_focus_order: true
+
+# Keyboard Navigation
+require_keyboard_access: true
+require_visible_focus: true
+
+# Testing Scope
+test_all_activities: true
+test_all_fragments: true
+test_all_custom_views: true
+
+# Exclusions (if any)
+# List views/components that are exempt from certain checks
+# (should be minimal and well-justified)
+exclusions: []
+
+# Automated Testing Tools
+enabled_tools:
+  - google_accessibility_scanner
+  - espresso_accessibility
+  - axe_devtools
+
+# Reporting
+generate_html_report: true
+generate_json_report: true
+fail_on_errors: true
+fail_on_warnings: false
+
+# Integration
+ci_enabled: true
+pre_commit_hook: false
+pre_push_hook: false
