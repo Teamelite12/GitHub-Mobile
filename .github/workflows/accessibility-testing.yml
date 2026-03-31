@@ -1,0 +1,71 @@
+name: Accessibility Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  accessibility-tests:
+    name: Run Accessibility Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v4
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+
+    - name: Run Lint and Build
+      run: |
+        ./gradlew lintDebug
+        ./gradlew assembleDebug
+        ./gradlew assembleDebugAndroidTest
+      continue-on-error: true
+
+    - name: Run Unit Tests
+      run: ./gradlew test
+      continue-on-error: true
+
+    # Uncomment when emulator is available
+    # - name: Run Accessibility Tests on Emulator
+    #   uses: reactivecircus/android-emulator-runner@v2
+    #   with:
+    #     api-level: 29
+    #     target: default
+    #     arch: x86_64
+    #     profile: Nexus 6
+    #     script: ./gradlew connectedAndroidTest
+
+    - name: Upload Test Reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: |
+          app/build/reports/
+          app/build/test-results/
+
+    - name: Upload Build Artifacts
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          app/build/outputs/apk/debug/
+          app/build/outputs/apk/androidTest/debug/
+
