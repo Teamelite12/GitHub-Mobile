@@ -1,0 +1,88 @@
+name: Accessibility Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  accessibility-test:
+    name: Run Accessibility Tests
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run unit tests
+        run: ./gradlew test
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Run accessibility checks (lint)
+        run: ./gradlew lint
+        continue-on-error: true
+
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: lint-results
+          path: app/build/reports/lint-results*.html
+
+      - name: Comment on accessibility findings
+        if: always()
+        run: |
+          echo "Accessibility testing completed"
+          echo "Check the lint results for detailed accessibility findings"
+
+  # Note: Android instrumentation tests require an emulator or connected device
+  # For CI/CD, you would typically use:
+  # - GitHub Actions with reactivecircus/android-emulator-runner
+  # - Firebase Test Lab
+  # - AWS Device Farm
+  # This is commented out as it requires additional setup
+  
+  # instrumentation-test:
+  #   name: Run Instrumentation Tests
+  #   runs-on: macos-latest
+  #   
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Set up JDK 17
+  #       uses: actions/setup-java@v3
+  #       with:
+  #         java-version: '17'
+  #         distribution: 'temurin'
+  #
+  #     - name: Grant execute permission for gradlew
+  #       run: chmod +x gradlew
+  #
+  #     - name: Run instrumented tests
+  #       uses: reactivecircus/android-emulator-runner@v2
+  #       with:
+  #         api-level: 29
+  #         script: ./gradlew connectedAndroidTest
+  #
+  #     - name: Upload test results
+  #       if: always()
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: instrumentation-test-results
+  #         path: app/build/reports/androidTests/
