@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHub Mobile</string>
+    <string name="welcome_message">Welcome to GitHub Mobile</string>
+    <string name="welcome_desc">Welcome message displayed at the top of the screen</string>
+    <string name="username_hint">Enter your GitHub username</string>
+    <string name="username_desc">Text input field for entering GitHub username</string>
+    <string name="login_button">Login</string>
+    <string name="login_desc">Button to login with the entered username</string>
+</resources>
