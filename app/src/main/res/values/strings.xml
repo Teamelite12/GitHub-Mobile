@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHub Mobile</string>
+    <string name="welcome_message">Welcome to GitHub Mobile</string>
+    <string name="welcome_description">Welcome message for GitHub Mobile application</string>
+    <string name="login">Login</string>
+    <string name="login_button_description">Login to GitHub</string>
+</resources>
