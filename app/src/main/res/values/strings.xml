@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GitHub Mobile</string>
+    <string name="app_title_description">GitHub Mobile application title</string>
+    <string name="action_button_text">Click Me</string>
+    <string name="action_button_description">Action button to perform an operation</string>
+</resources>
