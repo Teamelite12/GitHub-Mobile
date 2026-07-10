@@ -1,3 +1,3 @@
 File 1
-Shared line: ORIGINAL
+Shared line: RIGHT EDIT
 Stable tail line
