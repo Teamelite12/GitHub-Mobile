@@ -1,0 +1,7 @@
+File 3
+<<<<<<< HEAD
+Shared line: LEFT EDIT
+=======
+Shared line: RIGHT EDIT
+>>>>>>> conflict-right
+Stable tail line
