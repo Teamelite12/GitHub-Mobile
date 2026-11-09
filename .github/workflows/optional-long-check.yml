@@ -1,0 +1,28 @@
+name: Optional Long Running Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  optional-long-check:
+    name: Optional – Long running status check
+    runs-on: ubuntu-latest
+
+    # Make it run for a very long time (up to 72 hours max allowed by GitHub)
+    timeout-minutes: 4320  # 3 days; adjust as you like
+
+    # Make sure this job never fails the whole workflow even if something breaks
+    continue-on-error: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Start long running loop
+        run: |
+          echo "Starting long-running optional status check..."
+          while true; do
+            echo "Still running at $(date)"
+            sleep 300
+          done
